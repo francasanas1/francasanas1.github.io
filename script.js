@@ -3,7 +3,7 @@ const pelota = document.getElementById('pelota');
 
 let puntos = 0;
 let tiempo = 60;
-let ganar = 15;
+
 
 function sumarPuntos() {
     puntos++;
@@ -16,20 +16,26 @@ function sumarPuntos() {
         alert('Ganaste');
         tiempo = 0;
     }
+    const pelotaNegra = document.createElement('div');
+    
+    for ( puntos=0; puntos<=15; puntos++){
+        
+        pelotaNegra.setAttribute("class","pelotanegra");
+        numeroRandom3 = Math.round(Math.random() * 500);
+        numeroRandom4 = Math.round(Math.random() * 500);
+        pelotaNegra.style.marginTop = numeroRandom3 + "px";
+        pelotaNegra.style.marginLeft = numeroRandom4 + "px";
+        contenedor.append(pelotaNegra);
+        pelotaNegra.addEventListener('mouseover', perder);
+    }
 }
 
 let contenedor = document.querySelector('.contenedor');
 
-for ( puntos=0; puntos<=15; puntos++){
 
-    const pelotaNegra = document.createElement('div');
-    pelotaNegra.setAttribute("class","pelotanegra");
-    numeroRandom3 = Math.round(Math.random() * 500);
-    numeroRandom4 = Math.round(Math.random() * 500);
-    document.getElementsByClassName('pelotaNegra').style.marginTop = numeroRandom3 + "px";
-    document.getElementsByClassName('pelotaNegra').style.marginLeft = numeroRandom4 + "px";
-    contenedor.append(pelotaNegra);
-    
+function perder(){
+    alert('Perdiste');
+    puntos=0;
 }
 
 pelota.addEventListener('mouseover', sumarPuntos);
