@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,23 @@
     <title>Juego de la Viborita</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
-    <div id="tablero">
-        <p id="puntos"></p>
-        <p id="tiempo"></p>
+    <div id="registro">
+        <label>Nombre del jugador:</label>
+        <input id="username"><br>
+        <button id="iniciar">Comenzar juego!</button>
     </div>
-    <div class="contenedor">
-        <div id="pelota"></div>
+    <div id="juego">
+        <div id="tablero">
+            <p id="puntos"></p>
+            <p id="tiempo"></p>
+        </div>
+        <div class="contenedor">
+            <div id="pelota"></div>
+        </div>
     </div>
 </body>
 <script src="script.js"></script>
+
 </html>

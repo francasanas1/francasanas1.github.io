@@ -6,7 +6,7 @@ let tiempo = 60;
 
 
 function sumarPuntos() {
-    
+
     if (puntos === 15) {
         alert('Ganaste');
         tiempo=61;
@@ -65,4 +65,18 @@ function crearPelotaNegra() {
 
     contenedor.append(pelotaNegra);
     pelotaNegra.addEventListener('mouseover', perder);
+}
+
+const iniciar = document.getElementById('iniciar');
+
+iniciar.addEventListener("click", inicioJuego)
+
+const juego = document.getElementById('juego');
+
+const registro = document.getElementById('registro');
+
+function inicioJuego (){
+    juego.style.display = "block";
+    registro.style.display = "none";
+
 }
