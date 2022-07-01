@@ -51,8 +51,12 @@ body{
 
 #juego{
     display: none;
-    /* display: grid;
-    grid-template-columns: 30% 70%; */
+    
+}
+
+#juego1{
+    display: grid;
+    grid-template-columns: 30% 70%;
 }
 
 #registro{

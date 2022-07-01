@@ -10,11 +10,11 @@
 </head>
 
 <body>
-    <div id="registro">
+    <form id="registro">
         <label>Nombre del jugador:</label>
         <input id="username"><br>
-        <button id="iniciar">Comenzar juego!</button>
-    </div>
+        <button id="iniciar" type="submit">Comenzar juego!</button>
+    </form>
     <div id="juego">
         <div id="tablero">
             <p id="puntos"></p>
@@ -24,6 +24,17 @@
             <div id="pelota"></div>
         </div>
     </div>
+    <table id="tablaPuntuacion">
+        <tr>
+            <th>Nombre</th>
+            <th>Puntuacion</th>
+        </tr>
+        <tr>
+            <td id="nombre"></td>
+            <td id="puntuacion"></td>
+        </tr>
+
+    </table>
 </body>
 <script src="script.js"></script>
 

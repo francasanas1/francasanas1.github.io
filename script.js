@@ -78,5 +78,31 @@ const registro = document.getElementById('registro');
 function inicioJuego (){
     juego.style.display = "block";
     registro.style.display = "none";
+    nombre.innerHTML = username;
+    // puntuacion1.innerHTML = puntuacion;
 
 }
+let nombreUsuario = localStorage.getItem('nombreUsuario');
+let puntuacion1 = localStorage.getItem('puntuacion1');
+
+const username = document.querySelector('#username');
+const puntos1 = document.querySelector('#puntos');
+
+const nombre = document.querySelector('#nombre');
+const puntuacion = document.querySelector('#puntuacion');
+
+
+
+registro.addEventListener('submit',(e) =>{
+    e.preventDefault();
+    nombreUsuario = username.value;
+    puntuacion1 = puntos1.value;
+
+    localStorage.setItem('nombreUsuario', username.value);
+    localStorage.setItem('puntuacion1', puntos1.value);
+    inicioJuego();
+
+})
+
+lst =localStorage.getItem('nombreUsuario');
+console.log(typeof(lst));
