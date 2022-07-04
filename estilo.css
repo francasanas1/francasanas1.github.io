@@ -1,65 +1,67 @@
-*{
+* {
     padding: 0;
     margin: 0;
-    
+
 }
 
-.contenedor{
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.contenedor {
     height: 500px;
     width: 500px;
     margin: auto;
-    margin-left: 60px;
+    margin-top: 5%;
     background-color: #aebd38;
-    margin-top: 70px;
-    border: 5px solid black ;
+    border: 5px solid black;
     
+
 }
 
-body{
- 
+body {
+    font-family: 'Poppins', sans-serif;
     background-color: #505160;
+    align-items: center;
+    justify-content: center;
 }
 
-#pelota{
-    height: 40px;
-    width: 40px;
+#pelota {
+    height: 30px;
+    width: 30px;
     background-color: #a43820;
-    border-radius: 20px;
+    border-radius: 50px;
     position: absolute;
     transition: 0.3s;
 }
 
-.pelotanegra{
-    height: 40px;
-    width: 40px;
+.pelotanegra {
+    height: 30px;
+    width: 30px;
     background-color: black;
-    border-radius: 20px;
+    border-radius: 50px;
     position: absolute;
     transition: 0.3s;
 }
 
-#tablero{
+#tablero {
     background-color: white;
     height: 150px;
     width: 150px;
-    margin-top: 40px;
-    margin-left: 50px;
     padding: 5px;
-    
-    
+    margin: auto;
+    text-align: center;
 }
 
-#juego{
+#juego {
     display: none;
-    
+
 }
 
-#juego1{
+#juego1 {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 25% 50% 25%;
 }
 
-#registro{
+#registro {
     margin: auto;
     margin-top: 200px;
     text-align: center;
@@ -68,10 +70,46 @@ body{
     width: 200px;
 }
 
-#iniciar{
+#iniciar {
     margin-top: 10px;
 }
 
-#username{
+#username {
     margin-top: 10px;
+}
+
+/* #modal {
+    background-color: #fff;
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#ventana {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+    display: none;
+} */
+
+button {
+    background-color: #47a386;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 25px;
 }

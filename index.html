@@ -12,29 +12,39 @@
 <body>
     <form id="registro">
         <label>Nombre del jugador:</label>
-        <input id="username"><br>
+        <input id="username" type="text"><br>
         <button id="iniciar" type="submit">Comenzar juego!</button>
     </form>
     <div id="juego">
-        <div id="tablero">
-            <p id="puntos"></p>
-            <p id="tiempo"></p>
-        </div>
-        <div class="contenedor">
-            <div id="pelota"></div>
+        <div id="juego1">
+            <div id="tablero">
+                <p id="puntos"></p>
+                <p id="tiempo"></p>
+            </div>
+            <div class="contenedor">
+                <div id="pelota"></div>
+            </div>
+            <table id="tablaPuntuacion">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Puntuacion</th>
+                </tr>
+                <tr>
+                    <td id="nombre" type="text"></td>
+                    <td id="puntuacion" type="number"></td>
+                </tr>
+        
+            </table>
         </div>
     </div>
-    <table id="tablaPuntuacion">
-        <tr>
-            <th>Nombre</th>
-            <th>Puntuacion</th>
-        </tr>
-        <tr>
-            <td id="nombre"></td>
-            <td id="puntuacion"></td>
-        </tr>
+    <!-- <div id="ventana">
+        <div id="modal">
+            <p>Queres seguir jugando?</p>
+            <button>Si</button>
+            <button>No</button>
+        </div>
 
-    </table>
+    </div> -->
 </body>
 <script src="script.js"></script>
 
