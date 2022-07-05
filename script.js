@@ -98,14 +98,33 @@ function guardarPuntacion(name, puntuation) {
         puntuacion: puntuation,
     };
 
+    const {usuario, puntuation} = obj;
+    //  DESESTRUCTURACIÓN
+
+    obj.sort((a, b) => {
+        if (a.puntuation < b.puntuation) {
+            return 1;
+        }
+        if (a.edad > b.edad) {
+            return -1;
+        }
+        return 0;
+    });
+    // No se si funciona
+    
+
     let textoGuardado = localStorage.getItem('nombreUsuario');
 
     //Si no hay algo almacenado, almaceno por primera vez.
-    if (textoGuardado == undefined) {
-        localStorage.setItem('usuarios', JSON.stringify([obj]))
+    // if (textoGuardado == undefined) {
+    //     localStorage.setItem('usuarios', JSON.stringify([obj]))
 
-        return
-    }
+    //     return
+    // }
+
+    textoGuardado == undefined && localStorage.setItem('usuarios', JSON.stringify([obj]));
+    // OPERADOR AND
+
 
     array = JSON.stringify(textoGuardado);
     array.push(obj);
@@ -120,7 +139,8 @@ function llenarTablaConDatosGuardados() {
     let json = localStorage.getItem('usuarios');
     let array = JSON.parse(json);
 
-    array.forEach(obj => agregarFila(obj.usuario, obj.puntuacion))
+    array.forEach(obj => agregarFila(obj.usuario, obj.puntuation))
+    //  DESESTRUCTURACIÓN
 }
 
 
@@ -139,10 +159,6 @@ registro.addEventListener('submit', (e) => {
 
 })
 
-// lst =localStorage.getItem('nombreUsuario');
-// console.log(typeof(lst));
-
-// const tablaPuntuacion = document.querySelector('#tablaPuntuacion');
 
 function agregarFila(nombre, puntuacion) {
     let tabla = document.getElementById('tablaPuntuacion');
