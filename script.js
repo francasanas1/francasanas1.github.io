@@ -14,6 +14,8 @@ const jugarDeNuevo = document.getElementById('jugarDeNuevo');
 let puntos = 0;
 let tiempo = 60;
 
+pelota.addEventListener('mouseover', sumarPuntos);
+
 function moverPunto() {
 
     document.getElementById('puntos').innerHTML = 'Puntos: ' + puntos;
@@ -25,15 +27,16 @@ function moverPunto() {
 
 function perder() {
     alert('Perdiste, "Aceptar" para jugar de nuevo');
-    puntos = 0;
-    tiempo = 60;
+    guardarPuntacion();
+
+    reiniciarJuego();
     return;
 }
 
 function crearPelotaNegra() {
 
     const pelotaNegra = document.createElement('div');
-    
+
     pelotaNegra.setAttribute("class", "pelotanegra");
 
     numeroRandom3 = Math.round(Math.random() * 500);
@@ -43,7 +46,7 @@ function crearPelotaNegra() {
     pelotaNegra.style.marginLeft = numeroRandom4 + "px";
 
     contenedor.append(pelotaNegra);
-    tocarPelota = pelotaNegra.addEventListener('mouseover', perder);
+    pelotaNegra.addEventListener('mouseover', perder);
 
 }
 
@@ -52,8 +55,8 @@ function sumarPuntos() {
 
     if (puntos === 15) {
         alert('Ganaste');
-        puntos = 0;
-        tiempo = 60;
+        guardarPuntacion();
+        reiniciarJuego();
     }
     moverPunto();
 
@@ -75,15 +78,53 @@ function restarTiempo() {
 function inicioJuego() {
     juego.style.display = "grid";
     registro.style.display = "none";
-    nombre.innerHTML = `${localStorage.getItem('nombreUsuario')}`;
-    // puntuacion1.innerHTML = puntuacion;
-    // let nombreUsuario = localStorage.getItem('nombreUsuario');
-    // let puntuacion1 = localStorage.getItem('puntuacion1');
+    // nombre.innerHTML = `${localStorage.getItem('nombreUsuario')}`;
+    setInterval(restarTiempo, 1000);
+}
+
+function reiniciarJuego() {
+    puntos = 0;
+    tiempo = 60;
+
+    removeElementsByClass('pelotanegra');
+
+}
+
+function guardarPuntacion(name, puntuation) {
+    let nombreUsuario = username.value;
+
+    let obj = {
+        usuario: name,
+        puntuacion: puntuation,
+    };
+
+    let textoGuardado = localStorage.getItem('nombreUsuario');
+
+    //Si no hay algo almacenado, almaceno por primera vez.
+    if (textoGuardado == undefined) {
+        localStorage.setItem('usuarios', JSON.stringify([obj]))
+
+        return
+    }
+
+    array = JSON.stringify(textoGuardado);
+    array.push(obj);
+
+    let json = JSON.stringify(array)
+
+
+    localStorage.setItem('usuarios', json)
+}
+
+function llenarTablaConDatosGuardados() {
+    let json = localStorage.getItem('usuarios');
+    let array = JSON.parse(json);
+
+    array.forEach(obj => agregarFila(obj.usuario, obj.puntuacion))
 }
 
 
-pelota.addEventListener('mouseover', sumarPuntos);
-setInterval(restarTiempo, 1000);
+
 
 
 
@@ -95,7 +136,6 @@ registro.addEventListener('submit', (e) => {
     localStorage.setItem('nombreUsuario', nombreUsuario);
     localStorage.setItem('puntuacion1', puntuacion1);
     inicioJuego();
-    // agregarFila();
 
 })
 
@@ -104,13 +144,20 @@ registro.addEventListener('submit', (e) => {
 
 // const tablaPuntuacion = document.querySelector('#tablaPuntuacion');
 
-// function agregarFila() {
-//     let tr = document.createElement('tr');
-//     let td = document.createElement('td');
-//     tr.appendChild(td);
-//     let td1 = document.createElement('td');
-//     tr.appendChild(td1);
+function agregarFila(nombre, puntuacion) {
+    let tabla = document.getElementById('tablaPuntuacion');
 
-//     document.getElementById('tablaPuntuacion').appendChild(tr);
-// }
+    let tr = document.createElement('tr');
+
+    let elementoNombre = document.createElement('td');
+    let elementoPuntacion = document.createElement('td');
+
+    elementoNombre.innerText = nombre;
+    elementoPuntacion.innerText = puntuacion;
+
+    tr.appendChild(elementoNombre);
+    tr.appendChild(elementoPuntacion);
+
+    tabla.appendChild(tr);
+}
 
