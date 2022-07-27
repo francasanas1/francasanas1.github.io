@@ -101,59 +101,69 @@ function reiniciarJuego() {
     arrayPN.forEach(pelota2 => {
         pelota2.remove(arrayPN);
     })
-
 }
 
-function guardarPuntacion(name, puntuation) {
-    let nombreUsuario = username.value;
-
-    let obj = {
-        usuario: name,
-        puntuacion: puntuation,
-    };
-
-    const { usuario, puntuacion } = obj;
-    //  DESESTRUCTURACIÓN
-
-    const miarray = [];
-    miarray.push(obj);
-
-    miarray.sort((a, b) => {
-        if (a.puntuacion < b.puntuacion) {
-            return 1;
-        }
-        if (a.puntuacion > b.puntuacion) {
-            return -1;
-        }
-        return 0;
-    });
-    // No se si funciona
 
 
-    let textoGuardado = localStorage.getItem('nombreUsuario');
-
-    //Si no hay algo almacenado, almaceno por primera vez.
-    // if (textoGuardado == undefined) {
-    //     localStorage.setItem('usuarios', JSON.stringify([obj]))
-
-    //     return
-    // }
-
-    textoGuardado == undefined && localStorage.setItem('usuarios', JSON.stringify([obj]));
-    // OPERADOR AND
-
-    console.log(typeof textoGuardado);
+// function guardarPuntacion(name, puntuation) {
+//     let nombreUsuario = username.value;
+//     let puntuacion1 = puntuacion.value;
 
 
-    array = JSON.stringify(textoGuardado);
-    console.log(array, "soy array")
-    obj.push(array);
-    console.log(obj)
-    let json = JSON.stringify(array)
+//     let obj = {
+//         usuario: name,
+//         puntuacion: puntuation,
+//     };
+
+//     const { usuario, puntuacion } = obj;
+//     //  DESESTRUCTURACIÓN
+
+//     // const miarray = [];
+//     // miarray.push(obj);
+
+//     // miarray.sort((a, b) => {
+//     //     if (a.puntuacion < b.puntuacion) {
+//     //         return 1;
+//     //     }
+//     //     if (a.puntuacion > b.puntuacion) {
+//     //         return -1;
+//     //     }
+//     //     return 0;
+//     // });
+//     // No se si funciona
+
+//     let textoGuardadoP = localStorage.setItem('puntuacion1');
+//     let textoGuardadoN = localStorage.getItem('nombreUsuario');
+
+//     //Si no hay algo almacenado, almaceno por primera vez.
+//     // if (textoGuardado == undefined) {
+//     //     localStorage.setItem('usuarios', JSON.stringify([obj]))
+
+//     //     return
+//     // }
+
+//     if (textoGuardadoN == undefined) {
+
+//         textoGuardadoN = 0;
+
+//         return
+//     }
+
+//     textoGuardado == undefined && localStorage.setItem('usuarios', JSON.stringify(obj));
+//     // OPERADOR AND
+
+//     console.log(typeof textoGuardadoN);
 
 
-    localStorage.setItem('usuarios', json)
-}
+//     array = JSON.stringify(textoGuardadoN);
+//     console.log(array, "soy array");
+//     array.push(obj);
+//     console.log(obj);
+//     let json = JSON.stringify(array);
+
+
+//     localStorage.setItem('usuarios', json)
+// }
 
 function llenarTablaConDatosGuardados() {
     let json = localStorage.getItem('usuarios');
@@ -174,6 +184,16 @@ registro.addEventListener('submit', (e) => {
     inicioJuego();
 
 })
+
+function guardarPuntacion() {
+    let puntos1 = puntos;
+    let puntuacion1 = puntos1.value;
+    let textoGuardadoP = localStorage.setItem('puntuacion1', puntuacion1);
+    if (textoGuardadoP == undefined) {
+        let puntuacion1 = 0;
+        return
+    }
+}
 
 
 function agregarFila(nombre, puntuacion) {
