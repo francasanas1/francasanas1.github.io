@@ -4,22 +4,26 @@
 
 }
 
+html,
+body {
+    height: 100%;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 .contenedor {
-    height: 500px;
-    width: 500px;
+    height: 550px;
+    width: 550px;
     margin: auto;
     margin-top: 5%;
-    background-color: #aebd38;
-    border: 5px solid black;
-    
-
+    background: linear-gradient(#22c3a3, #21dcb7, #3829be);
+    border: 3px solid #49504e;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #505160;
+    background: linear-gradient(#888a8a, #ECF0F1, #FDFEFE);
+    /* background-color: #2182dc ; */
     align-items: center;
     justify-content: center;
 }
@@ -27,28 +31,32 @@ body {
 #pelota {
     height: 30px;
     width: 30px;
-    background-color: #a43820;
+    background-color: #F7F9F9;
     border-radius: 50px;
     position: absolute;
     transition: 0.3s;
+    border: 1px solid black;
 }
 
 .pelotanegra {
     height: 30px;
     width: 30px;
-    background-color: black;
+    background-color: #dc9121;
+    /* background: linear-gradient(#da3c3c,#dc9121,#e1e435) ; */
     border-radius: 50px;
     position: absolute;
     transition: 0.3s;
+    border: 1px solid black;
 }
 
 #tablero {
     background-color: white;
-    height: 150px;
-    width: 150px;
+    height: 50px;
+    width: 100px;
     padding: 5px;
     margin: auto;
     text-align: center;
+    border: 3px solid #49504e;
 }
 
 #juego {
@@ -63,11 +71,16 @@ body {
 
 #registro {
     margin: auto;
-    margin-top: 200px;
+    margin-top: 170px;
     text-align: center;
-    background-color: white;
-    height: 100px;
+    background-color: #FDFEFE;
+    height: 150px;
     width: 200px;
+    padding: auto;
+    padding-top: 3px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 25px;
 }
 
 #iniciar {
@@ -78,32 +91,6 @@ body {
     margin-top: 10px;
 }
 
-/* #modal {
-    background-color: #fff;
-    width: 600px;
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-#ventana {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    pointer-events: none;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    transition: opacity 0.3s ease;
-    display: none;
-} */
-
 button {
     background-color: #47a386;
     border: 0;
@@ -112,4 +99,34 @@ button {
     color: #fff;
     font-size: 14px;
     padding: 10px 25px;
+}
+
+#tablaPuntuacion {
+    margin: auto;
+
+}
+
+#tablaPuntuacion th {
+    background-color: rgb(139, 139, 139);
+    height: 50px;
+    width: 100px;
+    padding: auto;
+    border: 3px solid #49504e;
+}
+
+#tablaPuntuacion td {
+    background-color: #FDFEFE;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+    border: 3px solid #49504e;
+}
+
+#footer{
+    text-align: center;
+    margin: 80px 110px;
+    font-size: 25px;
+    background-color: #FDFEFE;
+    border: 2px solid black;
+    border-radius: 5px;
 }
