@@ -15,8 +15,8 @@ var puntuacion1;
 var elementoNombre;
 var elementoPuntacion;
 let puntosGanar = 50;
-var miarray = [];
-var obj;
+var objLS;
+
 
 let puntos = 1;
 let tiempo = 60;
@@ -40,9 +40,12 @@ function perder() {
         confirmButtonText: 'Jugar de nuevo'
     }).then(() => {
         puntos = puntos - 1;
-        guardarPuntacion();
+        // guardarPuntacion();
+        guardarLocalStorage({
+            usuario: nombreUsuario,
+            puntuacion: puntos
+        });
         reiniciarJuego();
-        agregarFila();
     })
 }
 
@@ -74,8 +77,11 @@ function sumarPuntos() {
             text: 'Felicidades!',
             confirmButtonText: 'Jugar de nuevo'
         }).then(() => {
-            guardarPuntacion();
-            agregarFila();
+            // guardarPuntacion();
+            guardarLocalStorage({
+                usuario: nombreUsuario,
+                puntuacion: puntos
+            });
             reiniciarJuego();
         })
     } else {
@@ -101,6 +107,8 @@ function inicioJuego() {
     registro.style.display = "none";
     footer.style.display = "none";
     setInterval(restarTiempo, 1000);
+    cargarTabla();
+
 }
 
 function reiniciarJuego() {
@@ -111,6 +119,7 @@ function reiniciarJuego() {
         pelota2.remove(arrayPN);
     })
     document.getElementById('puntos').innerHTML = 'Puntos: 0';
+    cargarTabla();
 }
 
 
@@ -118,20 +127,16 @@ function reiniciarJuego() {
 registro.addEventListener('submit', (e) => {
     e.preventDefault();
     nombreUsuario = username.value;
-    localStorage.setItem('nombreUsuario', nombreUsuario);
     inicioJuego();
-
 })
 
-function guardarPuntacion() {
-    let puntuacion1 = puntos;
-    console.log(puntuacion1);
-    let textoGuardadoP = localStorage.setItem('puntuacion1', puntuacion1);
-    if (textoGuardadoP == undefined) {
-        let puntuacion1 = 0;
-        return
-    }
-}
+// function guardarPuntacion() {
+//     let puntuacion1 = puntos;
+//     console.log(puntuacion1);
+//     localStorage.setItem('puntuacion1', puntuacion1);
+
+
+// }
 
 
 function agregarFila(nombreUsuario, puntuacion1) {
@@ -142,8 +147,8 @@ function agregarFila(nombreUsuario, puntuacion1) {
     let elementoNombre = document.createElement('td');
     let elementoPuntacion = document.createElement('td');
 
-    elementoNombre.innerText = localStorage.getItem('nombreUsuario');
-    elementoPuntacion.innerText = localStorage.getItem('puntuacion1');
+    elementoNombre.innerText = nombreUsuario;
+    elementoPuntacion.innerText = puntuacion1;
 
     // console.log(elementoNombre);
     // console.log(elementoPuntacion);
@@ -154,3 +159,75 @@ function agregarFila(nombreUsuario, puntuacion1) {
     tabla.appendChild(tr);
 }
 
+function guardarLocalStorage(objLS) {
+
+    let miarray;
+    let datos = localStorage.getItem('UsuariosData');
+
+    miarray = datos === null ? [] : JSON.parse(datos);
+
+    miarray.push(objLS);
+    miarray.sort((a, b) => {
+        if (a.puntuacion < b.puntuacion) {
+            return 1;
+        }
+        if (a.puntuacion > b.puntuacion) {
+            return -1;
+        }
+        return 0;
+    });
+    let miarrayJSON = JSON.stringify(miarray);
+    localStorage.setItem('UsuariosData', miarrayJSON);
+
+
+    // console.log(miarray);
+    // miarray.push(obj);
+    // console.log(obj);
+    // let json = JSON.stringify(miarray);
+    // localStorage.setItem('usuarios', json)
+
+
+    // miarray.push(obj);
+
+    // console.log(miarray);
+
+    // localStorage.setItem('localArray', JSON.stringify(miarray));
+
+
+
+}
+
+function cargarTabla() {
+    vaciarTabla();
+    agregarFila('usuario', 'puntuacion');
+    array = JSON.parse(localStorage.getItem('UsuariosData'));
+    console.log(array);
+    array.slice(0, 9).forEach(element => {
+        agregarFila(element.usuario, element.puntuacion);
+    });
+}
+
+function vaciarTabla() {
+    let tabla = document.getElementById('tablaPuntuacion');
+
+    while (tabla.lastChild) {
+        tabla.lastChild.remove();
+    }
+}
+
+function cargarFrase() {
+    fetch('frases.json')
+        .then(respuesta => respuesta.json())
+        .then(resultados => {
+            console.log(resultados.frases);
+            let numeroAleatorio = Math.floor(Math.random() * resultados.frases.length);
+            // console.log(resultados.frases.length);
+            let frase = resultados.frases.find(frase =>{return frase.id == numeroAleatorio});
+            console.log(frase.frase);
+            document.getElementById('frases').innerHTML = frase.frase;
+        }).catch(error => {
+            alert('Error!');
+        }).finally()
+}
+
+cargarFrase();

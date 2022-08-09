@@ -1,0 +1,25 @@
+{
+  "frases": [
+    {
+      "id": 1,
+      "frase": "Buena suerte!"
+    },
+    {
+      "id": 2,
+      "frase": "Ten cuidado con las bolas naranjas!"
+    },
+    {
+      "id": 3,
+      "frase": "Mucha atencion"
+    },
+    {
+      "id": 4,
+      "frase": "No es para lentos este juego"
+    },
+    {
+      "id": 5,
+      "frase": "Demuestra que eres el mas rapido"
+    }
+  ]
+}
+
